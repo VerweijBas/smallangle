@@ -16,5 +16,18 @@ def tan(number):
     print(df)
 
 
+
+
+@click.command()
+@click.argument('function', type=click.Choice(['sin', 'tan']))
+@click.option('-n', default=10, help='gives tan values between 0 and 2pi')
+def generate_values(function, n):
+    if function == 'sin':
+        sin(n)
+    elif function == 'tan':
+        tan(n)
+    
+
+
 if __name__ == "__main__":
-    sin(10)
+    generate_values()
