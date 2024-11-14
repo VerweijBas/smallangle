@@ -17,17 +17,25 @@ def tan(number):
 
 
 
+@click.group()
+def smallangle():
+    pass
 
 @click.command()
-@click.argument('function', type=click.Choice(['sin', 'tan']))
+@click.option('-n', default=10, help='gives sin values between 0 and 2pi')
+def sin_values(n):
+    sin(n)
+
+@click.command()
 @click.option('-n', default=10, help='gives tan values between 0 and 2pi')
-def generate_values(function, n):
-    if function == 'sin':
-        sin(n)
-    elif function == 'tan':
-        tan(n)
-    
+def tan_values(n):
+    tan(n)
+
+
+smallangle.add_command(sin_values, 'sin')
+smallangle.add_command(tan_values, 'tan')
+
 
 
 if __name__ == "__main__":
-    generate_values()
+    smallangle()
